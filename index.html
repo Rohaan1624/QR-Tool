@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate a QR code from any URL and download it as a PNG.">
+  <title>Linkframe — URL to QR Code</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="shell">
+
+    <header class="header">
+      <div class="logo">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <path d="M14 14h3v3h-3z"/>
+            <path d="M21 14v.01"/>
+            <path d="M14 21v.01"/>
+            <path d="M21 18v.01"/>
+            <path d="M18 21v.01"/>
+          </svg>
+        </span>
+        <span class="logo-name">Linkframe</span>
+      </div>
+      <p class="tagline">Turn any link into a scannable QR code</p>
+    </header>
+
+    <section class="card">
+
+      <div class="card-controls">
+        <h1 class="card-title">URL to QR code</h1>
+        <p class="card-subtitle">Paste a link below, generate a high-resolution QR code, and download it as a PNG.</p>
+
+        <form id="qr-form" novalidate>
+          <label class="field-label" for="url-input">Website URL</label>
+          <div class="input-row">
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+              </span>
+              <input
+                id="url-input"
+                type="url"
+                inputmode="url"
+                autocomplete="url"
+                spellcheck="false"
+                placeholder="https://example.com"
+                aria-describedby="input-error"
+              >
+            </div>
+            <button type="submit" class="btn btn-primary" id="generate-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <path d="M14 17h3m3 0h.01M17 14v3m0 3v.01"/>
+              </svg>
+              Generate
+            </button>
+          </div>
+          <p class="field-error" id="input-error" role="alert" hidden></p>
+        </form>
+
+        <ul class="feature-list" aria-label="Features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6 9 17l-5-5"/>
+            </svg>
+            High-resolution 1024&thinsp;&times;&thinsp;1024 PNG export
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6 9 17l-5-5"/>
+            </svg>
+            Generated locally — your link never leaves the browser
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6 9 17l-5-5"/>
+            </svg>
+            Works with any standard QR scanner
+          </li>
+        </ul>
+      </div>
+
+      <div class="card-preview">
+        <div class="preview-frame" id="preview-frame">
+
+          <div class="preview-empty" id="preview-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <path d="M14 14h3v3h-3z"/>
+              <path d="M21 14v.01M14 21v.01M21 18v.01M18 21v.01"/>
+            </svg>
+            <p>Your QR code will appear here</p>
+          </div>
+
+          <div class="preview-result" id="preview-result" hidden>
+            <canvas id="qr-canvas" role="img" aria-label="Generated QR code"></canvas>
+          </div>
+
+        </div>
+
+        <p class="preview-caption" id="preview-caption" hidden></p>
+
+        <button type="button" class="btn btn-secondary" id="download-btn" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <path d="m7 10 5 5 5-5"/>
+            <path d="M12 15V3"/>
+          </svg>
+          Download PNG
+        </button>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <p>QR codes are generated entirely in your browser. No data is stored or transmitted.</p>
+    </footer>
+
+  </main>
+
+  <script src="vendor/qrcode.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
