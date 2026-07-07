@@ -123,6 +123,7 @@
     resultState.hidden = true;
     void resultState.offsetWidth;
     emptyState.hidden = true;
+    emptyState.style.display = "none";
     resultState.hidden = false;
 
     caption.textContent = url;
