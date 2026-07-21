@@ -1,5 +1,7 @@
 # QR Tool
 
+**Live Demo:** https://rohaan1624.github.io/QR-Tool/
+
 A lightweight web application that generates QR codes from URLs and allows users to download the generated QR code as a PNG image.
 
 ## Features
@@ -12,7 +14,7 @@ A lightweight web application that generates QR codes from URLs and allows users
 
 ## Project Structure
 
-```
+```text
 QR-Tool/
 ├── index.html      # Application markup
 ├── styles.css      # Styling
@@ -23,7 +25,13 @@ QR-Tool/
 
 ## Getting Started
 
-1. Extract the ZIP file.
+1. Clone the repository:
+
+```bash
+git clone https://github.com/rohaan1624/QR-Tool.git
+cd QR-Tool
+```
+
 2. Open `index.html` in any modern web browser.
 
 Alternatively, serve the folder with any static web server.
